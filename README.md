@@ -120,6 +120,23 @@ parameters:
                     secret: '!ChangeMe!'
 ```
 
+## Contributing
+<table bgcolor="#f1f1f1">
+<tbody><tr>
+<td width="50">
+<img src="https://www.drupal.org/files/ghmark-coi.png" width="32" height="32" alt="Github">
+</td>
+<td>
+Please post <strong>bug reports</strong>, <strong>feature requests</strong> and <strong>other issues</strong> to the <a href="https://github.com/wieni/mercure" rel="nofollow">GitHub project</a>.
+</td>
+</tr>
+</tbody></table>
+
+- [Wieni Code Style](https://github.com/wieni/wmcodestyle) is used by the project. The included `composer coding-standards` script can be used to validate the conventions.
+- Tests are encouraged. This project doesn't have any test coverage yet, but contributions are welcome.
+- Keep the documentation up to date. Make sure README.md and other relevant documentation is kept up to date with your changes.
+- One pull request per feature. Try to keep your changes focused on solving a single problem. This will make it easier for us to review the change and easier for you to make sure you have updated the necessary tests and documentation.
+
 ## Changelog
 All notable changes to this project will be documented in the
 [CHANGELOG](CHANGELOG.md) file.
