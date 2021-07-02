@@ -2,8 +2,9 @@
 
 namespace Drupal\mercure;
 
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderInterface;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Mercure\Authorization;
@@ -18,7 +19,7 @@ use Symfony\Component\Mercure\Jwt\TokenFactoryInterface;
 use Symfony\Component\Mercure\Jwt\TokenProviderInterface;
 use Symfony\Component\Mercure\Messenger\UpdateHandler;
 
-class MercureServiceProvider implements ServiceProviderInterface
+class MercureServiceProvider implements ServiceProviderInterface, CompilerPassInterface
 {
     private ContainerBuilder $container;
 
@@ -30,8 +31,12 @@ class MercureServiceProvider implements ServiceProviderInterface
      */
     public function register(ContainerBuilder $container)
     {
-        $this->container = $container;
+        $container->addCompilerPass($this);
+    }
 
+    public function process(ContainerBuilder $container)
+    {
+        $this->container = $container;
         if (
             !$container->hasParameter('mercure')
             || !($config = $container->getParameter('mercure'))
@@ -173,6 +178,6 @@ class MercureServiceProvider implements ServiceProviderInterface
         // This is a workaround because Drupal's container->register() requires
         // an id to be lowercase and as such it can't be used to register classes.
         // </rage>
-        return $this->container->setDefinition($id, new Definition($class));
+        return $this->container->setDefinition($id, new Definition($class ?? $id));
     }
 }
