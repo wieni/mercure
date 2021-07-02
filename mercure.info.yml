@@ -1,0 +1,6 @@
+name: mercure
+type: module
+description: Integrates the Mercure Component in the Drupal cms.
+core_version_requirement: ^8 || ^9
+package: Wieni
+dependencies: []
